@@ -22,7 +22,7 @@ f is called)?
 
 Sample Answer: eip
 
-Your Answer: Eax
+Your Answer: eax
 
 ---
 QUESTION #3 - 2 pts
@@ -42,7 +42,7 @@ What is the name of the 6th instruction of the function f?
 
 Sample Answer: mov
 
-Your Answer: Add
+Your Answer: add
 
 ---
 QUESTION #5 - 2 pts
