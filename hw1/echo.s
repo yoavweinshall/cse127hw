@@ -76,5 +76,5 @@ _start:
 
     ## Exit the program with code 0 (success).
     movl  $1, %eax      # Select the 'sys_exit' syscall
-    movl  $0, %ebx      # Set the exit code to 0
+    sub $1, %ebx
     int   $0x80         # Invoke the syscall

@@ -12,7 +12,7 @@ Sample Answer: 0xffffffff
 (Your answer should be something like this exactly in 8 hex digits with
 "0x" as prefix)
 
-Your Answer: 0x7fffffea
+Your Answer: [0x7fffffea]
 
 ---
 QUESTION #2 - 2 pts
@@ -22,7 +22,7 @@ f is called)?
 
 Sample Answer: eip
 
-Your Answer: eax
+Your Answer: [eax]
 
 ---
 QUESTION #3 - 2 pts
@@ -33,7 +33,7 @@ Sample Answer: 0xffffffff
 (Your answer should be something like this exactly in 8 hex digits with
 "0x" as prefix)
 
-Your Answer: 0x004005a0
+Your Answer: [0x004005a0]
 
 ---
 QUESTION #4 - 2 pts
@@ -42,7 +42,7 @@ What is the name of the 6th instruction of the function f?
 
 Sample Answer: mov
 
-Your Answer: add
+Your Answer: [add]
 
 ---
 QUESTION #5 - 2 pts
@@ -54,4 +54,4 @@ Sample Answer: 0xffffffff
 (Your answer should be something like this exactly in 8 hex digits with
 "0x" as prefix)
 
-Your Answer: 0x0040063c
+Your Answer: [0x0040063c]
