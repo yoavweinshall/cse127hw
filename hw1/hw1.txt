@@ -33,7 +33,7 @@ Sample Answer: 0xffffffff
 (Your answer should be something like this exactly in 8 hex digits with
 "0x" as prefix)
 
-Your Answer: 0x000005a0
+Your Answer: 0x004005a0
 
 ---
 QUESTION #4 - 2 pts
