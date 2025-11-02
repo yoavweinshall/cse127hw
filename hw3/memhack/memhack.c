@@ -37,9 +37,7 @@ void handle_SEGV(int sig_num) {
 // function in your solution, but it should serve as an example of how you
 // _will_ need to use signals to complete this assignment.
 //
-int demonstrate_signals() {
-    char *buf = page_start;
-
+int catch_signals(char *start_guess) {
     // this call arranges that _if_ there is a SEGV fault in the future
     // (anywhere in the program) then control will transfer directly to this
     // point with sigsetjmp returning 1
@@ -50,7 +48,7 @@ int demonstrate_signals() {
     signal(SIGSEGV, &handle_SEGV);
 
     // We will now cause a fault to happen
-    *buf = 0;
+    check_pass(start_guess);
     return 0;
 }
 
@@ -58,7 +56,6 @@ int main(int argc, char **argv) {
     char guess[33];
     char c;
     int ok;
-    int len;
 
     // get the physical page size
     page_size = sysconf(_SC_PAGESIZE);
@@ -102,9 +99,6 @@ int main(int argc, char **argv) {
     // to protected memory.  You can remove this code after you understand it.
     // You will need to use signals in this manner to solve the assignment.
     //
-    if (demonstrate_signals() == 1) {
-        printf("We caught a page fault\n");
-    }
 
     // set initial guess to zeros
     bzero(guess, sizeof(guess));
@@ -114,6 +108,21 @@ int main(int argc, char **argv) {
     //   we suggest a loop over the size of the possible
     //   password, each time trying all possible characters
     //
+    for(int len = 0; len < 33; len++ ) {
+        for (int i=0; i<len; i++) {
+            *(page_start-i-2)= guess[len-i-1];
+        }
+        for(char next_char = 33; next_char<=126; next_char++) {
+            *(page_start-1) = next_char;
+            unsigned int ret = catch_signals(page_start - len - 1);
+            if (ret) {
+                guess[len] = next_char;
+                break;
+            }
+            printf("%c", next_char);
+        }
+        printf("\n");
+    }
     if (check_pass(guess)) {
         printf("Password Found!\n");
         hack_system(guess);
