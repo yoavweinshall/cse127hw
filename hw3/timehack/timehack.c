@@ -41,8 +41,8 @@ int main(int argc, char **argv) {
                     break;
                 }
             }
-            if (found) {break;}
             unsigned long end = rdtsc();
+            if (found) {break;}
             if (end-start>best_letter_time) {
                 best_letter_time = end-start;
                 best_letter = next_letter;
