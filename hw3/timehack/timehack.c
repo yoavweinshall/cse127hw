@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
         for (next_letter=33; next_letter<=126; next_letter++) {
             unsigned long start = rdtsc();
             guess[len] = next_letter;
-            for (int i=0; i<10000; i++) {
+            for (int i=0; i<20000; i++) {
                 if (check_pass(guess)) {
                     found = true;
                     break;

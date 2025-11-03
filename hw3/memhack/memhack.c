@@ -119,7 +119,9 @@ int main(int argc, char **argv) {
                 guess[len] = next_char;
                 break;
             }
-        }
+        if (check_pass(guess)) {
+            break;
+        }}
     }
     if (check_pass(guess)) {
         printf("Password Found!\n");

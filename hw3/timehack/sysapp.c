@@ -22,7 +22,7 @@ static char *correct_pass = "IsNotSecret";
 //
 void delay() {
     int j, q;
-    for (j = 0; j < 100; j++) {
+    for (j = 0; j < 1000; j++) {
         q = q + j;
     }
 }

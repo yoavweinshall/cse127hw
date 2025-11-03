@@ -1,3 +1,11 @@
 Description of memhack functionality:
 
+each time we want to figure out the next letter in the password. since the check password check goes over a
+sequence in memory, if we'll locate are known letters such that it will end by the end of the accessible memory - 1 byte
+at the last byte of the accessible memory we can try to put all the other legal letters. if we hit the right one, the
+loop will go to one more iterate where it will get a segmentation fault, otherwise it'll return false because it founded
+a mismatch with password. therefore each time will locate our known letters accordingly to find the next one
+with segfault until we have all letters
+
+
 References used:
