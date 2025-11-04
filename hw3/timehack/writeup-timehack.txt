@@ -2,9 +2,10 @@ Description of timehack functionality:
 
 Since the check_password function works in loop that checks letter by letter. The more letters we have right in order,
 the more time the function runs. Therefore, we want to crack the password a letter by letter. Each time we will try to
-test the password with a new letter for multiple times (20000) to avoid noises. If we got the password right
-we just break out of the tests and "hacking" the system. Else, we'll take the letter that it took us the most time to
-run the tests with because it had extra loop iterate and this is our next right letter
+test the password with a new letter for multiple times (5000) to avoid noises. To make sure the noises didn't hurt
+the measurements, we'll take the median value of our tries to hack the password with the new letter If we got the
+password right we just break out of the tests and "hacking" the system. Else, we'll take the letter that it took us
+the most time to run the tests with because it had extra loop iterate and this is our next right letter
 
 **As recommended  in the discussion, i changed the delay for loop to run 1000 times because I'm working with a M3 mac
 
